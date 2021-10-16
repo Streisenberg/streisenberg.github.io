@@ -1,0 +1,114 @@
+#cv_image{
+    background: url(../images/myimages/mountain.jpg) center top no-repeat;
+    -webkit-background-size: cover;
+    min-height: 200px !important;
+    background-position-y: center;
+    
+}
+
+#create_header{
+    color: black;
+    text-shadow: 2px -1px #fff;
+}
+
+#better_header{
+    color: black;
+    text-shadow: 2px -1px #fff;
+
+}
+
+#home_picture{
+    background: url(../images/myimages/glasses.jpg) center top no-repeat;
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+    background-position-y: center;
+}
+
+#ana_resim{
+    position: relative;
+    margin-left: 50px;
+}
+
+#home_second_image{
+    background: url(../images/myimages/new_york.jpg) center top no-repeat;
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+    background-position-y: center;
+}
+
+#imageheader{
+    width: 150px;
+    height: auto;
+    margin: 18px auto !important;
+}
+
+#footer_padlock{
+    width: 100px;
+    height: auto;
+}
+
+#home_project{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+#home_description{
+    padding: 0px 200px;
+}
+
+#project_main_image{
+    background: url(../images/myimages/project_main.jpg) center top no-repeat;
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+    background-position-y: center;
+}
+
+#project_one{
+    background: url(../images/myimages/projects-1.jpg) center top no-repeat;
+    background-size: cover;
+}
+
+#project_two{
+    background: url(../images/myimages/projects-2.jpg) center top no-repeat;
+    background-size: cover;
+}
+
+#project_three{
+    background: url(../images/myimages/projects-3.jpg) center top no-repeat;
+    background-size: cover;
+}
+
+#project_four{
+    background: url(../images/myimages/projects-4.jpg) center top no-repeat;
+    background-size: cover;
+}
+
+#contact_main{
+    background: url(../images/myimages/contact_main.jpg) center top no-repeat;
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+    background-position-y: center;
+}
+
+#contact_name{
+    color: white;
+    text-shadow: 2px -1px #000;
+}
+
+#contact_number{
+    color: white;
+    text-shadow: 2px -1px #000;
+}
+
+#contact_mail{
+    color: white;
+    text-shadow: 2px -1px #000;
+}
+
+#contact_info{
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    padding-bottom: 30px;
+}
