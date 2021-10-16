@@ -144,11 +144,5 @@
     }
 }
 
-@media only screen and (min-width:320px) and (max-width:460px){
-    #home_picture{
-        width: auto ;
-        max-width: 100% ;
-        height: auto ;
-    }
-}
+
 
