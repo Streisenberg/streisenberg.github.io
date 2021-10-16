@@ -84,6 +84,11 @@
     background-size: cover;
 }
 
+#project_five{
+    background: url(../images/myimages/projects-5.jpg) center top no-repeat;
+    background-size: cover;
+}
+
 #contact_main{
     background: url(../images/myimages/contact_main.jpg) center top no-repeat;
     -webkit-background-size: cover;
