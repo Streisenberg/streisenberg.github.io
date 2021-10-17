@@ -118,6 +118,12 @@
     padding-bottom: 30px;
 }
 
+#about_main{
+    background: url(../images/myimages/about_main.jpg) center top no-repeat;
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+}
+
 @media only screen and (min-width:320px) and (max-width:980px){
     #ana_resim{
       position: relative;
