@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Core colors */
+  --color-void: #0a0a0f;
+  --color-void-light: #12121a;
+  --color-accent: #7c3aed;
+  --color-accent-secondary: #06b6d4;
+  
+  /* Scroll progress */
+  --scroll-progress: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-void);
+  color: #f5f5f5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Smooth scroll overrides for Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Canvas container - GPU accelerated */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.canvas-container canvas {
+  pointer-events: auto;
+  will-change: contents;
+}
+
+/* Content overlay - GPU accelerated */
+.content-overlay {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.content-overlay > * {
+  pointer-events: auto;
+  backface-visibility: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-accent), var(--color-accent-secondary));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Selection */
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: white;
+}
+
+/* Text effects */
+.text-gradient {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 50%, #ec4899 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite;
+}
+
+.text-glow {
+  text-shadow: 
+    0 0 10px rgba(124, 58, 237, 0.5),
+    0 0 20px rgba(124, 58, 237, 0.3),
+    0 0 40px rgba(124, 58, 237, 0.1);
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Loading screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-void);
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(124, 58, 237, 0.2);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Section styling */
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+/* Landmark info cards */
+.landmark-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.landmark-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button styles */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary));
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-accent-secondary), var(--color-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Staggered reveal animations */
+.stagger-reveal > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger-reveal.revealed > *:nth-child(1) { animation: slideUp 0.6s ease forwards 0.1s; }
+.stagger-reveal.revealed > *:nth-child(2) { animation: slideUp 0.6s ease forwards 0.2s; }
+.stagger-reveal.revealed > *:nth-child(3) { animation: slideUp 0.6s ease forwards 0.3s; }
+.stagger-reveal.revealed > *:nth-child(4) { animation: slideUp 0.6s ease forwards 0.4s; }
+.stagger-reveal.revealed > *:nth-child(5) { animation: slideUp 0.6s ease forwards 0.5s; }
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating animation for background elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-25px) translateX(5px);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Pulse glow animation for logo */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 0 40px rgba(124, 58, 237, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.5), 0 0 60px rgba(124, 58, 237, 0.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Ship sailing animation */
+@keyframes sail {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(5px) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+}
+
+.animate-sail {
+  animation: sail 4s ease-in-out infinite;
+}
+
