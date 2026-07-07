@@ -35,6 +35,13 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     // Update ScrollTrigger on scroll - throttled
     lenis.on("scroll", ScrollTrigger.update);
 
+    // The 3D experience pauses scrolling while it loads and warms the GPU,
+    // so the first user scroll never collides with shader compilation.
+    const onExperienceLoading = () => lenis.stop();
+    const onExperienceReady = () => lenis.start();
+    window.addEventListener("experience:loading", onExperienceLoading);
+    window.addEventListener("experience:ready", onExperienceReady);
+
     // Use a more efficient RAF loop
     let rafId: number;
     const raf = (time: number) => {
@@ -46,6 +53,8 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     // Cleanup
     return () => {
       cancelAnimationFrame(rafId);
+      window.removeEventListener("experience:loading", onExperienceLoading);
+      window.removeEventListener("experience:ready", onExperienceReady);
       lenis.destroy();
     };
   }, []);

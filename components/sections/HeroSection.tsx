@@ -95,6 +95,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
+      data-scene="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
       {/* Background gradient overlay */}
@@ -185,18 +186,18 @@ export default function HeroSection() {
             About Me
           </Link>
         </div>
+      </div>
 
-        {/* Scroll indicator */}
-        <div
-          ref={scrollIndicatorRef}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        >
-          <span className="font-mono text-xs text-white/40 tracking-widest uppercase">
-            Scroll to explore
-          </span>
-          <div className="animate-bounce">
-            <ChevronDown className="w-6 h-6 text-white/40" />
-          </div>
+      {/* Scroll indicator — anchored to the section, not the content flow */}
+      <div
+        ref={scrollIndicatorRef}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+      >
+        <span className="font-mono text-xs text-white/40 tracking-widest uppercase">
+          Scroll to explore
+        </span>
+        <div className="animate-bounce">
+          <ChevronDown className="w-6 h-6 text-white/40" />
         </div>
       </div>
 

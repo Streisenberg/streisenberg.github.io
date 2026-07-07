@@ -207,6 +207,7 @@ export default function ContactSection() {
   return (
     <section
       ref={sectionRef}
+      data-scene="contact"
       className="relative min-h-screen flex items-center justify-center py-32 px-6"
     >
       {/* Background gradient */}

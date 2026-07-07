@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import Navigation from "@/components/ui/Navigation";
+import StoryProgress from "@/components/ui/StoryProgress";
 import HeroSection from "@/components/sections/HeroSection";
 import EducationSection from "@/components/sections/EducationSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
@@ -29,6 +30,11 @@ export default function Home() {
 
       {/* Fixed 3D Canvas Background */}
       <Experience />
+
+      {/* Global story rail — rendered OUTSIDE .content-overlay so its
+          position:fixed is relative to the viewport, not the transformed
+          overlay box. Tracks the visitor across the whole narrative. */}
+      <StoryProgress />
 
       {/* Scrollable Content Overlay */}
       <main className="content-overlay">

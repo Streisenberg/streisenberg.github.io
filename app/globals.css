@@ -141,9 +141,10 @@ html.lenis, html.lenis body {
 }
 
 .glass-dark {
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* No backdrop-filter: blurring the live WebGL canvas behind these cards
+     forces an expensive re-composite every animated frame (visible jank on
+     Retina). A slightly deeper tint reads almost identically. */
+  background: rgba(10, 10, 15, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.05);
   will-change: transform, opacity;
   transform: translateZ(0);
